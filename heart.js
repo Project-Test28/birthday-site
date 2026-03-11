@@ -234,48 +234,48 @@ function getHeartSettings() {
     const isLandscape = window.innerWidth > window.innerHeight;
     const width = window.innerWidth;
     
-    // القيم الافتراضية للكمبيوتر - مساحة مثالية 28
+    // القيم الافتراضية للكمبيوتر
     let settings = {
-        scale: 28,        // للكمبيوتر (مثالي)
-        step: 0.14,       // تقريب الصور
+        scale: 28,
+        step: 0.15,        // زيادة الخطوة لتقليل عدد النقاط (كان 0.14)
         imgSize: 100,
         delay: 80
     };
     
-    // تعديل للهواتف - تصغير المساحة إلى 16
+    // تعديل للهواتف - تصغير المساحة إلى 14 وتقليل عدد النقاط
     if (width < 600) {
         if (isLandscape) {
             // هاتف في الوضع الأفقي
             settings = {
-                scale: 8,         // تصغير متناسب للوضع الأفقي
-                step: 0.15,
+                scale: 7,         // مناسب للوضع الأفقي
+                step: 0.18,       // عدد نقاط أقل
                 imgSize: 50,
                 delay: 60
             };
         } else {
-            // هاتف في الوضع العمودي - تصغير إلى 16
+            // هاتف في الوضع العمودي - مساحة 14
             settings = {
-                scale: 16,        // تعديل من 20 إلى 16 (أصغر بكثير)
-                step: 0.12,       // تقريب الصور بشكل كبير (كان 0.13)
-                imgSize: 60,      // تصغير حجم الصور قليلاً
-                delay: 60
+                scale: 14,        // تعديل من 16 إلى 14 (أصغر)
+                step: 0.17,       // زيادة الخطوة لتقليل عدد النقاط (كان 0.12)
+                imgSize: 60,      // نفس حجم الصور
+                delay: 65
             };
         }
     } else if (width < 900 && isLandscape) {
         // جهاز لوحي في الوضع الأفقي
         settings = {
-            scale: 12,            // مناسب
-            step: 0.14,
+            scale: 10,
+            step: 0.16,
             imgSize: 70,
             delay: 70
         };
     } else if (width < 900 && !isLandscape) {
         // جهاز لوحي في الوضع العمودي
         settings = {
-            scale: 18,            // تعديل من 22 إلى 18
-            step: 0.13,           // تقريب الصور
+            scale: 16,
+            step: 0.15,
             imgSize: 80,
-            delay: 70
+            delay: 75
         };
     }
     
@@ -289,7 +289,7 @@ let imgSize = settings.imgSize;
 const delay = settings.delay;
 const heartPoints = [];
 
-// Generate heart shape points with many points (لتقريب الصور بشكل كبير)
+// Generate heart shape points with optimal number of points
 for (let t = 0; t < 2 * Math.PI; t += step) {
     const x = 16 * Math.pow(Math.sin(t), 3);
     const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
