@@ -123,7 +123,7 @@ document.addEventListener('touchstart', (e) => {
     }
 });
 
-// ==================== إصلاح الصورة المتحركة ====================
+// ==================== إصلاح الصورة المتحركة وجعلها داخل مجموعة القلب ====================
 const heartGif = document.getElementById('heartGif');
 
 // دالة تحديث حجم الصورة حسب اتجاه الشاشة
@@ -132,33 +132,26 @@ function updateGifSize() {
     const width = window.innerWidth;
     
     if (width <= 500 && isLandscape) {
-        // أصغر هاتف في الوضع الأفقي
-        heartGif.style.width = '60px';
-        heartGif.style.height = '60px';
-    } else if (width <= 700 && isLandscape) {
-        // هاتف صغير في الوضع الأفقي
-        heartGif.style.width = '70px';
-        heartGif.style.height = '70px';
-    } else if (width <= 900 && isLandscape) {
-        // هاتف متوسط في الوضع الأفقي
-        heartGif.style.width = '80px';
-        heartGif.style.height = '80px';
-    } else if (width <= 480 && !isLandscape) {
-        // هاتف صغير في الوضع العمودي
         heartGif.style.width = '90px';
         heartGif.style.height = '90px';
+    } else if (width <= 700 && isLandscape) {
+        heartGif.style.width = '100px';
+        heartGif.style.height = '100px';
+    } else if (width <= 900 && isLandscape) {
+        heartGif.style.width = '120px';
+        heartGif.style.height = '120px';
+    } else if (width <= 480 && !isLandscape) {
+        heartGif.style.width = '100px';
+        heartGif.style.height = '100px';
     } else if (width <= 768 && !isLandscape) {
-        // هاتف متوسط في الوضع العمودي
-        heartGif.style.width = '110px';
-        heartGif.style.height = '110px';
+        heartGif.style.width = '140px';
+        heartGif.style.height = '140px';
     } else if (width >= 1920) {
-        // شاشات كبيرة
-        heartGif.style.width = '230px';
-        heartGif.style.height = '230px';
+        heartGif.style.width = '200px';
+        heartGif.style.height = '200px';
     } else {
-        // كمبيوتر عادي
-        heartGif.style.width = '190px';
-        heartGif.style.height = '190px';
+        heartGif.style.width = '180px';
+        heartGif.style.height = '180px';
     }
 }
 
@@ -180,7 +173,7 @@ heartGif.onerror = function() {
     heartGif.style.alignItems = 'center';
     heartGif.style.justifyContent = 'center';
     heartGif.style.background = 'linear-gradient(135deg, #ff69b4, #ff1493)';
-    heartGif.style.fontSize = '70px';
+    heartGif.style.fontSize = '80px';
     heartGif.innerHTML = '❤️';
 };
 
@@ -231,7 +224,7 @@ function showFallingMessage() {
 
 // ==================== Heart Formation with Photos ====================
 const photos = [];
-// صورك فقط - 16 صورة (بدون صور دخيلة)
+// صورك فقط - 16 صورة
 for (let i = 1; i <= 16; i++) {
     photos.push(`images/photo${i}.jpg`);
 }
@@ -241,48 +234,48 @@ function getHeartSettings() {
     const isLandscape = window.innerWidth > window.innerHeight;
     const width = window.innerWidth;
     
-    // القيم الافتراضية للكمبيوتر
+    // القيم الافتراضية للكمبيوتر - مساحة كبيرة وصور متوسطة
     let settings = {
-        scale: 22,
-        step: 0.2,
-        imgSize: 110,
-        delay: 100
+        scale: 30,        // تكبير مساحة القلب (كان 22)
+        step: 0.15,        // تقليل الخطوة لزيادة عدد النقاط (كان 0.2)
+        imgSize: 100,      // حجم الصور مناسب
+        delay: 80
     };
     
     // تعديل للهواتف
     if (width < 600) {
         if (isLandscape) {
-            // هاتف في الوضع الأفقي - الأصغر
+            // هاتف في الوضع الأفقي
             settings = {
-                scale: 5,
-                step: 0.35,
-                imgSize: 35,
-                delay: 70
+                scale: 15,        // مساحة كبيرة للوضع الأفقي
+                step: 0.18,
+                imgSize: 60,
+                delay: 60
             };
         } else {
             // هاتف في الوضع العمودي
             settings = {
-                scale: 6,
-                step: 0.3,
-                imgSize: 50,
-                delay: 80
+                scale: 18,        // مساحة كبيرة للوضع العمودي
+                step: 0.16,
+                imgSize: 70,
+                delay: 70
             };
         }
     } else if (width < 900 && isLandscape) {
-        // جهاز لوحي أو هاتف كبير في الوضع الأفقي
+        // جهاز لوحي في الوضع الأفقي
         settings = {
-            scale: 7,
-            step: 0.3,
-            imgSize: 45,
-            delay: 80
+            scale: 20,
+            step: 0.17,
+            imgSize: 80,
+            delay: 70
         };
     } else if (width < 900 && !isLandscape) {
         // جهاز لوحي في الوضع العمودي
         settings = {
-            scale: 10,
-            step: 0.25,
-            imgSize: 70,
-            delay: 90
+            scale: 22,
+            step: 0.16,
+            imgSize: 90,
+            delay: 80
         };
     }
     
@@ -296,7 +289,7 @@ let imgSize = settings.imgSize;
 const delay = settings.delay;
 const heartPoints = [];
 
-// Generate heart shape points
+// Generate heart shape points with more points
 for (let t = 0; t < 2 * Math.PI; t += step) {
     const x = 16 * Math.pow(Math.sin(t), 3);
     const y = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
@@ -310,6 +303,11 @@ const heartGroup = document.createElement('div');
 heartGroup.className = 'heart-group';
 heartGroup.style.transformStyle = 'preserve-3d';
 container.appendChild(heartGroup);
+
+// نقل الصورة المتحركة داخل مجموعة القلب لتتحرك معه
+if (heartGif && heartGif.parentNode !== heartGroup) {
+    heartGroup.appendChild(heartGif);
+}
 
 // إنشاء مودال لعرض الصور في نفس الصفحة
 const modal = document.createElement('div');
@@ -328,14 +326,13 @@ document.body.appendChild(modal);
 let currentPhotoIndex = 0;
 let allPhotos = [];
 
-// تجميع الصور في DocumentFragment
+// تجميع الصور
 let pointIndex = 0;
 
 function addNextPoint() {
     if (pointIndex >= heartPoints.length) return;
     
     const point = heartPoints[pointIndex];
-    // نكرر صورك فقط (16 صورة) على جميع النقاط
     const photoIndex = pointIndex % photos.length;
     
     const img = document.createElement('img');
@@ -345,14 +342,13 @@ function addNextPoint() {
     img.dataset.photoIndex = photoIndex;
     img.loading = 'lazy';
     
-    // تخزين الصورة في المصفوفة (بدون صور احتياطية)
+    // تخزين الصورة في المصفوفة
     allPhotos[pointIndex] = {
         src: photos[photoIndex]
     };
     
-    // Handle image load errors - إذا فشلت صورة، نستخدم صورة أخرى من نفس المجموعة
+    // Handle image load errors
     img.onerror = function() {
-        // استخدام صورة أخرى من نفس المجموعة
         const fallbackIndex = (photoIndex + 1) % photos.length;
         this.src = photos[fallbackIndex];
         allPhotos[pointIndex].src = photos[fallbackIndex];
@@ -362,7 +358,7 @@ function addNextPoint() {
     img.style.left = `calc(50% + ${point.x * scale}px - ${imgSize / 2}px)`;
     img.style.top = `calc(50% - ${point.y * scale}px - ${imgSize / 2}px)`;
     
-    // Add click event - فتح الصورة في نفس الصفحة
+    // Add click event
     img.addEventListener('click', function(e) {
         e.stopPropagation();
         currentPhotoIndex = pointIndex;
@@ -400,7 +396,6 @@ function changePhoto(direction) {
     currentPhotoIndex = (currentPhotoIndex + direction + heartPoints.length) % heartPoints.length;
     const modalImg = document.getElementById('modalImage');
     const photoData = allPhotos[currentPhotoIndex];
-    // استخدام الصورة المخزنة (كلها من صورك)
     modalImg.src = photoData ? photoData.src : photos[0];
 }
 
@@ -517,11 +512,4 @@ document.addEventListener('keydown', (e) => {
 // Cleanup
 window.addEventListener('beforeunload', () => {
     clearInterval(autoRotateTimer);
-});
-
-// تحديث إعدادات القلب عند تغيير اتجاه الشاشة
-window.addEventListener('resize', function() {
-    // إعادة تحميل الصفحة عند تغيير الاتجاه لتطبيق الإعدادات الجديدة
-    // يمكن إزالة هذا السطر إذا أردت تجنب إعادة التحميل
-    location.reload();
 });
