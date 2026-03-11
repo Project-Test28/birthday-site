@@ -242,20 +242,20 @@ function getHeartSettings() {
         delay: 80
     };
     
-    // تعديل للهواتف - تصغير المساحة إلى 25-26
+    // تعديل للهواتف - تصغير المساحة إلى 23
     if (width < 600) {
         if (isLandscape) {
-            // هاتف في الوضع الأفقي - تصغير أكثر
+            // هاتف في الوضع الأفقي
             settings = {
-                scale: 14,        // مناسب للوضع الأفقي
+                scale: 12,        // تصغير متناسب
                 step: 0.18,
                 imgSize: 60,
                 delay: 60
             };
         } else {
-            // هاتف في الوضع العمودي - تصغير إلى 25
+            // هاتف في الوضع العمودي - تصغير إلى 23
             settings = {
-                scale: 25,        // تعديل من 17 إلى 25 (تصغير مناسب)
+                scale: 23,        // تعديل من 25 إلى 23 (أصغر ومناسب)
                 step: 0.16,
                 imgSize: 70,
                 delay: 70
@@ -264,7 +264,7 @@ function getHeartSettings() {
     } else if (width < 900 && isLandscape) {
         // جهاز لوحي في الوضع الأفقي
         settings = {
-            scale: 16,            // مناسب
+            scale: 15,            // مناسب
             step: 0.17,
             imgSize: 80,
             delay: 70
@@ -272,7 +272,7 @@ function getHeartSettings() {
     } else if (width < 900 && !isLandscape) {
         // جهاز لوحي في الوضع العمودي
         settings = {
-            scale: 26,            // تعديل من 21 إلى 26 (تصغير)
+            scale: 24,            // تعديل من 26 إلى 24
             step: 0.16,
             imgSize: 90,
             delay: 80
