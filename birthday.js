@@ -264,8 +264,23 @@ style.textContent = `
         from { opacity: 0; }
         to { opacity: 1; }
     }
+    
+    @media (max-width: 768px) {
+        .countdown-number {
+            font-size: 120px !important;
+        }
+        .countdown-label {
+            font-size: 20px !important;
+        }
+    }
 `;
 document.head.appendChild(style);
+
+// تطبيق التعديلات على العد التنازلي للهواتف
+if (window.innerWidth <= 768) {
+    countdownNumber.style.fontSize = '120px';
+    countdownLabel.style.fontSize = '20px';
+}
 
 // ==================== تسلسل العد التنازلي ====================
 async function startCountdown() {
@@ -286,7 +301,7 @@ async function startCountdown() {
     }, 1000);
 }
 
-// ==================== الجملة الترحيبية ====================
+// ==================== الجملة الترحيبية (محسنة للهواتف) ====================
 function showWelcomeMessage() {
     const welcomeContainer = document.createElement('div');
     welcomeContainer.style.position = 'fixed';
@@ -301,23 +316,46 @@ function showWelcomeMessage() {
     welcomeContainer.style.background = 'rgba(0,0,0,0.9)';
     welcomeContainer.style.flexDirection = 'column';
     welcomeContainer.style.animation = 'fadeIn 1s';
+    welcomeContainer.style.padding = '20px';
     document.body.appendChild(welcomeContainer);
 
     const welcomeTitle = document.createElement('div');
-    welcomeTitle.style.fontSize = '70px';
+    
+    // تحسين حجم الخط للهواتف
+    if (window.innerWidth <= 480) {
+        welcomeTitle.style.fontSize = '28px';
+    } else if (window.innerWidth <= 768) {
+        welcomeTitle.style.fontSize = '40px';
+    } else {
+        welcomeTitle.style.fontSize = '70px';
+    }
+    
     welcomeTitle.style.fontWeight = 'bold';
     welcomeTitle.style.color = '#ff69b4';
     welcomeTitle.style.textShadow = '0 0 30px #ff69b4, 0 0 60px #ff1493';
     welcomeTitle.style.marginBottom = '20px';
     welcomeTitle.style.textAlign = 'center';
     welcomeTitle.style.lineHeight = '1.5';
+    welcomeTitle.style.wordWrap = 'break-word';
+    welcomeTitle.style.width = '100%';
+    welcomeTitle.style.padding = '0 15px';
     welcomeTitle.innerHTML = 'عيد ميلاد سعيد<br>يا أختي الغالية';
     welcomeContainer.appendChild(welcomeTitle);
 
     const welcomeSubtitle = document.createElement('div');
-    welcomeSubtitle.style.fontSize = '30px';
+    
+    if (window.innerWidth <= 480) {
+        welcomeSubtitle.style.fontSize = '18px';
+    } else if (window.innerWidth <= 768) {
+        welcomeSubtitle.style.fontSize = '22px';
+    } else {
+        welcomeSubtitle.style.fontSize = '30px';
+    }
+    
     welcomeSubtitle.style.color = 'white';
     welcomeSubtitle.style.textShadow = '0 0 20px #ff69b4';
+    welcomeSubtitle.style.textAlign = 'center';
+    welcomeSubtitle.style.padding = '0 15px';
     welcomeSubtitle.textContent = 'كل سنة وأنت طيبة ❤️';
     welcomeContainer.appendChild(welcomeSubtitle);
 
@@ -525,7 +563,7 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ==================== الرسالة النهائية ====================
+// ==================== الرسالة النهائية (محسنة للهواتف) ====================
 function showFinalMessage() {
     const messageDiv = document.createElement('div');
     messageDiv.style.position = 'fixed';
@@ -534,9 +572,7 @@ function showFinalMessage() {
     messageDiv.style.transform = 'translate(-50%, -50%)';
     messageDiv.style.background = 'rgba(255,105,180,0.95)';
     messageDiv.style.color = 'white';
-    messageDiv.style.fontSize = window.innerWidth > 768 ? '40px' : '28px';
     messageDiv.style.fontWeight = 'bold';
-    messageDiv.style.padding = window.innerWidth > 768 ? '50px 70px' : '30px 40px';
     messageDiv.style.borderRadius = '80px';
     messageDiv.style.border = '4px solid white';
     messageDiv.style.boxShadow = '0 0 60px #ff1493';
@@ -544,6 +580,23 @@ function showFinalMessage() {
     messageDiv.style.textAlign = 'center';
     messageDiv.style.animation = 'messageAppear 0.5s';
     messageDiv.style.cursor = 'pointer';
+    messageDiv.style.wordWrap = 'break-word';
+    
+    // تحسين حجم الخط وال padding للهواتف
+    if (window.innerWidth <= 480) {
+        messageDiv.style.fontSize = '18px';
+        messageDiv.style.padding = '20px 25px';
+        messageDiv.style.maxWidth = '85%';
+    } else if (window.innerWidth <= 768) {
+        messageDiv.style.fontSize = '24px';
+        messageDiv.style.padding = '30px 40px';
+        messageDiv.style.maxWidth = '80%';
+    } else {
+        messageDiv.style.fontSize = '40px';
+        messageDiv.style.padding = '50px 70px';
+        messageDiv.style.maxWidth = '70%';
+    }
+    
     messageDiv.innerHTML = '✨ كل سنة وأنت طيبة يا أجمل أخت في العالم ✨<br>❤️ أحبك جداً ❤️<br><br>🎁 اضغط هنا للهدية';
     
     document.body.appendChild(messageDiv);
@@ -579,3 +632,17 @@ finalStyle.textContent = `
     }
 `;
 document.head.appendChild(finalStyle);
+
+// ==================== تحديث عند تغيير حجم الشاشة ====================
+window.addEventListener('resize', function() {
+    // تحديث حجم الخط للعد التنازلي إذا كان موجوداً
+    if (countdownContainer.parentNode) {
+        if (window.innerWidth <= 768) {
+            countdownNumber.style.fontSize = '120px';
+            countdownLabel.style.fontSize = '20px';
+        } else {
+            countdownNumber.style.fontSize = '200px';
+            countdownLabel.style.fontSize = '30px';
+        }
+    }
+});

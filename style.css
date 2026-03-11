@@ -225,6 +225,7 @@ body {
     padding: 30px;
     display: none;
     box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    overflow-y: auto;
 }
 
 .book-pages.visible {
@@ -302,6 +303,7 @@ body {
     font-weight: 600;
     text-align: center;
     box-shadow: 0 5px 15px rgba(255,105,180,0.3);
+    word-wrap: break-word;
 }
 
 @keyframes messagePop {
@@ -450,49 +452,78 @@ body {
     display: none !important;
 }
 
-/* Responsive */
+/* ========== تحسينات الهواتف ========== */
 @media (max-width: 768px) {
     .album {
-        height: 600px;
+        height: auto;
+        max-height: 85vh;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .book {
+        height: 100%;
     }
     
     .cover-content h1 {
-        font-size: 36px;
+        font-size: 32px;
+        padding: 0 15px;
     }
     
     .cover-heart {
-        font-size: 80px;
+        font-size: 70px;
+    }
+    
+    .cover-content p {
+        font-size: 18px;
+    }
+    
+    .cover-hands {
+        font-size: 40px;
+    }
+    
+    .open-hint {
+        font-size: 14px;
+    }
+    
+    .book-pages {
+        padding: 15px;
+        max-height: 70vh;
+        overflow-y: auto;
     }
     
     .page-spread {
         grid-template-columns: 1fr;
         gap: 20px;
-        overflow-y: auto;
+        height: auto;
+    }
+    
+    .page {
+        padding: 15px;
+        margin-bottom: 10px;
     }
     
     .photo-frame {
-        height: 220px;
+        height: 200px;
+        margin-bottom: 15px;
     }
     
     .message {
-        font-size: 18px;
-        padding: 15px;
+        font-size: 16px;
+        padding: 12px;
+        line-height: 1.4;
     }
     
-    .modal-nav button {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-    }
-    
-    .close-modal {
-        top: 10px;
-        right: 20px;
-        font-size: 50px;
+    .page-number {
+        font-size: 14px;
+        margin-top: 10px;
     }
     
     .book-controls {
-        bottom: -60px;
+        position: relative;
+        bottom: auto;
+        margin-top: 20px;
+        padding: 10px 0;
     }
     
     .nav-btn {
@@ -500,11 +531,47 @@ body {
         height: 50px;
         font-size: 24px;
     }
+    
+    .modal-nav button {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+    
+    .close-modal {
+        top: 10px;
+        right: 20px;
+        font-size: 50px;
+    }
 }
 
 @media (max-width: 480px) {
-    .album {
-        height: 500px;
+    .cover-content h1 {
+        font-size: 26px;
+    }
+    
+    .cover-heart {
+        font-size: 60px;
+    }
+    
+    .cover-content p {
+        font-size: 16px;
+    }
+    
+    .cover-hands {
+        font-size: 35px;
+    }
+    
+    .open-hint {
+        font-size: 12px;
+    }
+    
+    .book-pages {
+        padding: 10px;
+    }
+    
+    .page {
+        padding: 12px;
     }
     
     .photo-frame {
@@ -512,8 +579,8 @@ body {
     }
     
     .message {
-        font-size: 16px;
-        padding: 12px;
+        font-size: 14px;
+        padding: 10px;
     }
     
     .nav-btn {
@@ -529,5 +596,41 @@ body {
     .dot {
         width: 10px;
         height: 10px;
+    }
+    
+    .modal-nav button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+    
+    .close-modal {
+        font-size: 40px;
+    }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 360px) {
+    .cover-content h1 {
+        font-size: 22px;
+    }
+    
+    .cover-heart {
+        font-size: 50px;
+    }
+    
+    .photo-frame {
+        height: 150px;
+    }
+    
+    .message {
+        font-size: 13px;
+        padding: 8px;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
     }
 }
