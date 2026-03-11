@@ -134,7 +134,7 @@ body {
 .love-text-top {
     position: absolute;
     left: 50%;
-    top: 12%;
+    top: 10%;
     transform: translate(-50%, -50%);
     color: white;
     font-size: 42px;
@@ -169,7 +169,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    perspective: 1500px;
+    perspective: 2000px;
     transform-style: preserve-3d;
     z-index: 10;
     cursor: grab;
@@ -189,14 +189,15 @@ body {
     will-change: transform;
 }
 
-/* تكبير حجم القلب بشكل كبير */
+/* ===== تكبير القلب 3 أضعاف ===== */
+/* للكمبيوتر - حجم كبير جداً */
 .heart-photo {
     position: absolute;
-    width: 140px;  /* تكبير كبير */
-    height: 140px; /* تكبير كبير */
-    border-radius: 15px;
-    border: 3px solid #ff69b4;
-    box-shadow: 0 0 25px rgba(255,105,180,0.6);
+    width: 220px !important;  /* تكبير 3 أضعاف تقريباً */
+    height: 220px !important; /* تكبير 3 أضعاف تقريباً */
+    border-radius: 20px;
+    border: 4px solid #ff69b4;
+    box-shadow: 0 0 40px rgba(255,105,180,0.8);
     object-fit: cover;
     cursor: pointer;
     transition: transform 0.3s ease;
@@ -215,8 +216,8 @@ body {
 }
 
 .heart-photo:hover {
-    transform: scale(1.25) translateZ(40px) rotate(5deg);
-    box-shadow: 0 0 50px #ff1493;
+    transform: scale(1.2) translateZ(60px) rotate(5deg);
+    box-shadow: 0 0 70px #ff1493;
     z-index: 1000;
     border-color: white;
     transition: transform 0.2s ease;
@@ -227,12 +228,12 @@ body {
     position: absolute;
     left: 50%;
     top: 48%;
-    transform: translate(-50%, -50%) translateZ(60px);
-    width: 240px;  /* تكبير كبير */
-    height: 240px; /* تكبير كبير */
+    transform: translate(-50%, -50%) translateZ(80px);
+    width: 280px;  /* تكبير مناسب مع القلب */
+    height: 280px; /* تكبير مناسب مع القلب */
     border-radius: 50%;
-    border: 4px solid white;
-    box-shadow: 0 0 50px #ff1493, 0 0 100px rgba(255,105,180,0.7);
+    border: 5px solid white;
+    box-shadow: 0 0 70px #ff1493, 0 0 150px rgba(255,105,180,0.8);
     object-fit: cover;
     z-index: 2000;
     animation: pulseGif 2s ease-in-out infinite;
@@ -251,17 +252,17 @@ body {
     justify-content: center;
     background: linear-gradient(135deg, #ff69b4, #ff1493);
     color: white;
-    font-size: 100px; /* تكبير الخط */
+    font-size: 120px;
 }
 
 @keyframes pulseGif {
     0%, 100% { 
-        transform: translate(-50%, -50%) translateZ(60px) scale(1);
-        box-shadow: 0 0 50px #ff1493;
+        transform: translate(-50%, -50%) translateZ(80px) scale(1);
+        box-shadow: 0 0 70px #ff1493;
     }
     50% { 
-        transform: translate(-50%, -50%) translateZ(60px) scale(1.1);
-        box-shadow: 0 0 80px #ff69b4, 0 0 140px #ff1493;
+        transform: translate(-50%, -50%) translateZ(80px) scale(1.1);
+        box-shadow: 0 0 100px #ff69b4, 0 0 180px #ff1493;
     }
 }
 
@@ -269,34 +270,34 @@ body {
 .heart-text {
     position: absolute;
     left: 50%;
-    top: 84%;
-    transform: translate(-50%, -50%) translateZ(40px);
+    top: 88%;
+    transform: translate(-50%, -50%) translateZ(50px);
     color: white;
-    font-size: 36px;
+    font-size: 42px;
     font-weight: bold;
-    text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+    text-shadow: 0 0 30px #ff69b4, 0 0 60px #ff1493;
     background: rgba(255,105,180,0.2);
-    padding: 15px 40px;
-    border-radius: 60px;
+    padding: 18px 45px;
+    border-radius: 70px;
     border: 3px solid #ff69b4;
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     white-space: nowrap;
     z-index: 1000;
     animation: textGlow 2s infinite;
     pointer-events: none;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
 }
 
 @keyframes textGlow {
     0%, 100% { 
-        text-shadow: 0 0 20px #ff69b4;
+        text-shadow: 0 0 30px #ff69b4;
         border-color: #ff69b4;
     }
     50% { 
-        text-shadow: 0 0 40px #ff1493, 0 0 60px white;
+        text-shadow: 0 0 60px #ff1493, 0 0 90px white;
         border-color: white;
     }
 }
@@ -368,24 +369,24 @@ body {
     transform: scale(1.1);
 }
 
-/* ========== تحسينات الهواتف مع تكبير القلب بشكل كبير ========== */
+/* ========== تحسينات الهواتف مع تكبير القلب 3 أضعاف ========== */
 @media (max-width: 768px) and (orientation: portrait) {
     /* تكبير حجم القلب للهواتف العمودية */
     .heart-photo {
-        width: 100px !important;  /* تكبير كبير */
-        height: 100px !important; /* تكبير كبير */
+        width: 160px !important;  /* تكبير 3 أضعاف للهواتف */
+        height: 160px !important;
     }
     
     .heart-gif {
-        width: 180px !important;  /* تكبير كبير */
-        height: 180px !important; /* تكبير كبير */
+        width: 200px !important;  /* تكبير مناسب */
+        height: 200px !important;
         top: 48%;
     }
     
     .love-text-top {
         font-size: 32px !important;
         padding: 12px 30px !important;
-        top: 12%;
+        top: 8%;
         white-space: normal !important;
         width: 90% !important;
         text-align: center !important;
@@ -397,80 +398,82 @@ body {
         white-space: normal !important;
         text-align: center !important;
         width: 90% !important;
-        top: 85%;
+        top: 90%;
     }
 }
 
 @media (max-width: 480px) and (orientation: portrait) {
     /* تكبير إضافي للهواتف الصغيرة العمودية */
     .heart-photo {
-        width: 85px !important;  /* تكبير كبير */
-        height: 85px !important; /* تكبير كبير */
+        width: 140px !important;  /* تكبير كبير */
+        height: 140px !important;
     }
     
     .heart-gif {
-        width: 150px !important;  /* تكبير كبير */
-        height: 150px !important; /* تكبير كبير */
+        width: 180px !important;
+        height: 180px !important;
         top: 48%;
     }
     
     .love-text-top {
         font-size: 28px !important;
         padding: 10px 25px !important;
-        top: 10%;
+        top: 7%;
     }
     
     .heart-text {
         font-size: 24px !important;
         padding: 10px 25px !important;
-        top: 86%;
+        top: 91%;
     }
 }
 
 /* للشاشات الصغيرة جداً */
 @media (max-width: 360px) and (orientation: portrait) {
     .heart-photo {
-        width: 75px !important;
-        height: 75px !important;
+        width: 120px !important;
+        height: 120px !important;
     }
     
     .heart-gif {
-        width: 130px !important;
-        height: 130px !important;
+        width: 160px !important;
+        height: 160px !important;
     }
     
     .love-text-top {
         font-size: 24px !important;
         padding: 8px 20px !important;
+        top: 6%;
     }
     
     .heart-text {
         font-size: 22px !important;
         padding: 8px 20px !important;
+        top: 92%;
     }
 }
 
 /* ========== تحسينات الهواتف الأفقية مع تكبير القلب ========== */
 @media (max-width: 900px) and (orientation: landscape) {
     .heart-photo {
-        width: 70px !important;  /* تكبير للوضع الأفقي */
-        height: 70px !important;
+        width: 110px !important;
+        height: 110px !important;
     }
     
     .heart-gif {
-        width: 130px !important;
-        height: 130px !important;
+        width: 150px !important;
+        height: 150px !important;
         top: 45%;
     }
     
     .love-text-top {
-        font-size: 24px !important;
+        font-size: 26px !important;
         padding: 8px 20px !important;
         top: 12%;
     }
     
     .heart-text {
-        font-size: 22px !important;
+        font-size: 24px !important;
         padding: 8px 20px !important;
         top: 85%;
     }
@@ -478,26 +481,26 @@ body {
 
 @media (max-width: 700px) and (orientation: landscape) {
     .heart-photo {
-        width: 60px !important;
-        height: 60px !important;
+        width: 100px !important;
+        height: 100px !important;
     }
     
     .heart-gif {
-        width: 110px !important;
-        height: 110px !important;
+        width: 130px !important;
+        height: 130px !important;
         top: 45%;
     }
 }
 
 @media (max-width: 500px) and (orientation: landscape) {
     .heart-photo {
-        width: 50px !important;
-        height: 50px !important;
+        width: 90px !important;
+        height: 90px !important;
     }
     
     .heart-gif {
-        width: 100px !important;
-        height: 100px !important;
+        width: 120px !important;
+        height: 120px !important;
         top: 45%;
     }
 }
@@ -515,23 +518,23 @@ body {
 /* Large Screens */
 @media (min-width: 1920px) {
     .heart-photo {
-        width: 160px;
-        height: 160px;
+        width: 260px;
+        height: 260px;
     }
     
     .heart-gif {
-        width: 280px;
-        height: 280px;
+        width: 320px;
+        height: 320px;
         top: 47%;
     }
     
     .love-text-top {
-        font-size: 60px;
-        padding: 25px 60px;
+        font-size: 70px;
+        padding: 30px 70px;
     }
     
     .heart-text {
-        font-size: 55px;
-        padding: 25px 60px;
+        font-size: 65px;
+        padding: 30px 70px;
     }
 }
