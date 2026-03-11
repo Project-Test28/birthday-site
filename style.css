@@ -452,11 +452,11 @@ body {
     display: none !important;
 }
 
-/* ========== تحسينات الهواتف ========== */
+/* ========== تحسينات الهواتف مع تكبير الألبوم ========== */
 @media (max-width: 768px) {
     .album {
-        height: auto;
-        max-height: 85vh;
+        height: 650px; /* تكبير ارتفاع الألبوم */
+        width: 98%;
         top: 50%;
         transform: translate(-50%, -50%);
     }
@@ -466,52 +466,58 @@ body {
     }
     
     .cover-content h1 {
-        font-size: 32px;
+        font-size: 36px;
         padding: 0 15px;
     }
     
     .cover-heart {
-        font-size: 70px;
+        font-size: 80px;
     }
     
     .cover-content p {
-        font-size: 18px;
+        font-size: 20px;
     }
     
     .cover-hands {
-        font-size: 40px;
+        font-size: 45px;
     }
     
     .open-hint {
-        font-size: 14px;
+        font-size: 16px;
     }
     
     .book-pages {
-        padding: 15px;
-        max-height: 70vh;
+        padding: 20px;
+        height: 100%;
         overflow-y: auto;
     }
     
     .page-spread {
-        grid-template-columns: 1fr;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr; /* إبقاء الصورتين جنباً إلى جنب */
+        gap: 15px;
         height: auto;
+        min-height: 100%;
     }
     
     .page {
         padding: 15px;
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        height: 100%;
     }
     
     .photo-frame {
-        height: 200px;
+        height: 200px; /* تكبير ارتفاع الصور */
         margin-bottom: 15px;
     }
     
     .message {
         font-size: 16px;
         padding: 12px;
-        line-height: 1.4;
+        line-height: 1.5;
+        min-height: 70px; /* ضمان مساحة كافية للرسالة */
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
     .page-number {
@@ -527,47 +533,39 @@ body {
     }
     
     .nav-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 24px;
-    }
-    
-    .modal-nav button {
-        width: 45px;
-        height: 45px;
-        font-size: 22px;
-    }
-    
-    .close-modal {
-        top: 10px;
-        right: 20px;
-        font-size: 50px;
+        width: 55px;
+        height: 55px;
+        font-size: 26px;
     }
 }
 
 @media (max-width: 480px) {
+    .album {
+        height: 550px; /* تكبير للشاشات الصغيرة */
+    }
+    
     .cover-content h1 {
-        font-size: 26px;
+        font-size: 28px;
     }
     
     .cover-heart {
-        font-size: 60px;
+        font-size: 70px;
     }
     
     .cover-content p {
-        font-size: 16px;
+        font-size: 18px;
     }
     
     .cover-hands {
-        font-size: 35px;
-    }
-    
-    .open-hint {
-        font-size: 12px;
+        font-size: 40px;
     }
     
     .book-pages {
-        padding: 10px;
+        padding: 15px;
+    }
+    
+    .page-spread {
+        gap: 10px;
     }
     
     .page {
@@ -575,18 +573,19 @@ body {
     }
     
     .photo-frame {
-        height: 180px;
+        height: 160px; /* تكبير للشاشات الصغيرة */
     }
     
     .message {
         font-size: 14px;
         padding: 10px;
+        min-height: 60px;
     }
     
     .nav-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 20px;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
     }
     
     .page-dots {
@@ -594,43 +593,30 @@ body {
     }
     
     .dot {
-        width: 10px;
-        height: 10px;
-    }
-    
-    .modal-nav button {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-    }
-    
-    .close-modal {
-        font-size: 40px;
+        width: 12px;
+        height: 12px;
     }
 }
 
 /* للشاشات الصغيرة جداً */
 @media (max-width: 360px) {
-    .cover-content h1 {
-        font-size: 22px;
-    }
-    
-    .cover-heart {
-        font-size: 50px;
+    .album {
+        height: 500px;
     }
     
     .photo-frame {
-        height: 150px;
+        height: 140px;
     }
     
     .message {
         font-size: 13px;
         padding: 8px;
+        min-height: 50px;
     }
     
     .nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
     }
 }
