@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ هدية خاصة ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            direction: rtl;
+        }
+
+        .floating-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 105, 180, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 8s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-100px) scale(1.2); opacity: 0.8; }
+        }
+
+        .password-container {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 40px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 105, 180, 0.3);
+            box-shadow: 0 30px 60px rgba(255, 105, 180, 0.2);
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .password-container h1 {
+            color: #ff69b4;
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .password-container p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 20px 25px;
+            font-size: 28px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 105, 180, 0.5);
+            border-radius: 60px;
+            color: #ff69b4;
+            letter-spacing: 15px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 40px rgba(255, 105, 180, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .password-input::placeholder {
+            letter-spacing: normal;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 16px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            border-radius: 60px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.4);
+        }
+
+        .error-message {
+            color: #ff4444;
+            margin-top: 20px;
+            display: none;
+            font-size: 16px;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .success-loader {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .success-loader span {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background: #ff69b4;
+            border-radius: 50%;
+            margin: 0 5px;
+            animation: loader 1s infinite;
+        }
+
+        .success-loader span:nth-child(2) { animation-delay: 0.2s; }
+        .success-loader span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes loader {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-bubbles" id="bubbles"></div>
+
+    <div class="password-container">
+        <h1>🎂 هدية سرية</h1>
+        <p>أدخل الرقم السري المكون من 6 أرقام</p>
+        <div class="input-group">
+            <input type="password" id="passwordInput" class="password-input" maxlength="6" placeholder="● ● ● ● ● ●">
+        </div>
+        <button onclick="checkPassword()" class="submit-btn" id="submitBtn">فتح</button>
+        <div id="errorMessage" class="error-message">❌ رمز خطأ</div>
+        <div class="success-loader" id="successLoader">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+
+    <script>
+        function createBubbles() {
+            const container = document.getElementById('bubbles');
+            for (let i = 0; i < 30; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                const size = Math.random() * 100 + 50;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.top = Math.random() * 100 + '%';
+                bubble.style.animationDuration = Math.random() * 5 + 5 + 's';
+                bubble.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(bubble);
+            }
+        }
+
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const submitBtn = document.getElementById('submitBtn');
+            const successLoader = document.getElementById('successLoader');
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (password === '120310') {
+                submitBtn.style.display = 'none';
+                successLoader.style.display = 'block';
+                errorMessage.style.display = 'none';
+
+                setTimeout(() => {
+                    window.location.href = 'birthday.html';
+                }, 2000);
+            } else {
+                errorMessage.style.display = 'block';
+                document.getElementById('passwordInput').value = '';
+            }
+        }
+
+        document.getElementById('passwordInput').addEventListener('input', function(e) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+
+        document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        createBubbles();
+    </script>
+</body>
+</html>

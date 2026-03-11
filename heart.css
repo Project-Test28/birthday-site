@@ -1,0 +1,575 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', cursive;
+    background: #000;
+    overflow: hidden;
+    color: white;
+    direction: rtl;
+}
+
+/* Rain Canvas */
+#rainCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.7;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Stars Background */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s infinite ease-in-out;
+    opacity: 0.8;
+    will-change: opacity;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+}
+
+.shooting-star {
+    position: absolute;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, white, transparent);
+    animation: shoot 1s linear forwards;
+    z-index: 1;
+    will-change: transform, opacity;
+}
+
+@keyframes shoot {
+    from {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 1;
+    }
+    to {
+        transform: translate(500px, 500px) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+.star-burst {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: burst 800ms ease-out forwards;
+    pointer-events: none;
+    will-change: transform, opacity;
+}
+
+@keyframes burst {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: translate(var(--dx), var(--dy)) scale(0.5); opacity: 0; }
+}
+
+/* Message Container - Back layer */
+.message-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.falling-message {
+    position: absolute;
+    white-space: nowrap;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #ffff00, #ff00ff);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: fallMessage linear forwards, sparkleColor 4s infinite linear;
+    text-shadow: 0 0 5px #fff, 0 0 10px hotpink, 0 0 15px cyan;
+    opacity: 0.9;
+    z-index: 2;
+    will-change: transform, opacity;
+}
+
+@keyframes sparkleColor {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fallMessage {
+    0% { transform: translateY(-50px); opacity: 0; }
+    10% { opacity: 1; }
+    80% { opacity: 1; }
+    95% { opacity: 0.5; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Love Text Top - فوق القلب */
+.love-text-top {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    text-shadow: 0 0 30px #ff69b4, 0 0 60px #ff1493;
+    background: rgba(255,105,180,0.2);
+    padding: 15px 40px;
+    border-radius: 60px;
+    border: 3px solid #ff69b4;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    white-space: nowrap;
+    z-index: 1000;
+    animation: loveTextGlow 2s infinite;
+    pointer-events: none;
+    letter-spacing: 2px;
+}
+
+@keyframes loveTextGlow {
+    0%, 100% { 
+        text-shadow: 0 0 30px #ff69b4;
+        border-color: #ff69b4;
+    }
+    50% { 
+        text-shadow: 0 0 60px #ff1493, 0 0 90px white;
+        border-color: white;
+    }
+}
+
+/* Heart Container - Front layer */
+.heart-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    perspective: 1500px;
+    transform-style: preserve-3d;
+    z-index: 10;
+    cursor: grab;
+}
+
+.heart-container:active {
+    cursor: grabbing;
+}
+
+/* Heart Group */
+.heart-group {
+    transform-style: preserve-3d;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+/* تكبير حجم القلب للكمبيوتر */
+.heart-photo {
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border-radius: 15px;
+    border: 3px solid #ff69b4;
+    box-shadow: 0 0 25px rgba(255,105,180,0.6);
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    opacity: 0;
+    transform: scale(0.5) rotate(0deg);
+    z-index: 100;
+    pointer-events: auto;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+    will-change: transform, opacity;
+}
+
+.heart-photo.show {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.heart-photo:hover {
+    transform: scale(1.25) translateZ(40px) rotate(5deg);
+    box-shadow: 0 0 50px #ff1493;
+    z-index: 1000;
+    border-color: white;
+    transition: transform 0.2s ease;
+}
+
+/* Heart GIF - في منتصف القلب تماماً */
+.heart-gif {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%) translateZ(60px);
+    width: 190px;
+    height: 190px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 50px #ff1493, 0 0 100px rgba(255,105,180,0.7);
+    object-fit: cover;
+    z-index: 2000;
+    animation: pulseGif 2s ease-in-out infinite;
+    pointer-events: none;
+    background: #ff69b4;
+    display: block;
+    opacity: 1;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+}
+
+/* Fallback for GIF */
+.heart-gif.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    color: white;
+    font-size: 70px;
+}
+
+@keyframes pulseGif {
+    0%, 100% { 
+        transform: translate(-50%, -50%) translateZ(60px) scale(1);
+        box-shadow: 0 0 50px #ff1493;
+    }
+    50% { 
+        transform: translate(-50%, -50%) translateZ(60px) scale(1.1);
+        box-shadow: 0 0 80px #ff69b4, 0 0 140px #ff1493;
+    }
+}
+
+/* Heart Text - تحت القلب */
+.heart-text {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%) translateZ(40px);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    text-shadow: 0 0 20px #ff69b4, 0 0 40px #ff1493;
+    background: rgba(255,105,180,0.2);
+    padding: 15px 40px;
+    border-radius: 60px;
+    border: 3px solid #ff69b4;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    white-space: nowrap;
+    z-index: 1000;
+    animation: textGlow 2s infinite;
+    pointer-events: none;
+    letter-spacing: 1px;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+}
+
+@keyframes textGlow {
+    0%, 100% { 
+        text-shadow: 0 0 20px #ff69b4;
+        border-color: #ff69b4;
+    }
+    50% { 
+        text-shadow: 0 0 40px #ff1493, 0 0 60px white;
+        border-color: white;
+    }
+}
+
+/* Photo Modal Styles */
+.photo-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-image {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 0 50px rgba(255,105,180,0.5);
+}
+
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: white;
+    font-size: 60px;
+    cursor: pointer;
+    z-index: 1000001;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: #ff69b4;
+    transform: scale(1.2);
+}
+
+.modal-nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.modal-nav button {
+    background: rgba(255,105,180,0.5);
+    color: white;
+    border: 3px solid white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    transition: 0.3s;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+.modal-nav button:hover {
+    background: #ff69b4;
+    transform: scale(1.1);
+}
+
+/* ========== تحسينات الهواتف العمودية ========== */
+@media (max-width: 768px) and (orientation: portrait) {
+    /* تصغير حجم القلب للهواتف العمودية */
+    .heart-photo {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .heart-gif {
+        width: 110px !important;
+        height: 110px !important;
+        top: 48%;
+    }
+    
+    .love-text-top {
+        font-size: 28px;
+        padding: 10px 25px;
+        top: 12%;
+    }
+    
+    .heart-text {
+        font-size: 24px;
+        padding: 12px 25px;
+        white-space: normal;
+        text-align: center;
+        width: 90%;
+        top: 82%;
+    }
+}
+
+@media (max-width: 480px) and (orientation: portrait) {
+    /* تصغير إضافي للهواتف الصغيرة العمودية */
+    .heart-photo {
+        width: 50px !important;
+        height: 50px !important;
+    }
+    
+    .heart-gif {
+        width: 90px !important;
+        height: 90px !important;
+        top: 48%;
+    }
+    
+    .love-text-top {
+        font-size: 22px;
+        padding: 8px 20px;
+        top: 10%;
+    }
+    
+    .heart-text {
+        font-size: 20px;
+        padding: 10px 20px;
+        top: 83%;
+    }
+}
+
+/* ========== تحسينات الهواتف الأفقية (الأهم) ========== */
+@media (max-width: 900px) and (orientation: landscape) {
+    /* الوضع الأفقي - تصغير كبير ليناسب الارتفاع المحدود */
+    .heart-photo {
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .heart-gif {
+        width: 80px !important;
+        height: 80px !important;
+        top: 45%;
+    }
+    
+    .love-text-top {
+        font-size: 20px;
+        padding: 6px 15px;
+        top: 12%;
+        white-space: nowrap;
+    }
+    
+    .heart-text {
+        font-size: 18px;
+        padding: 6px 15px;
+        top: 85%;
+        white-space: nowrap;
+    }
+    
+    /* تعديل موقع القلب ليكون أعلى قليلاً في الوضع الأفقي */
+    .heart-group {
+        transform: translate(-50%, -45%) !important;
+    }
+}
+
+/* للهواتف الصغيرة جداً في الوضع الأفقي */
+@media (max-width: 700px) and (orientation: landscape) {
+    .heart-photo {
+        width: 35px !important;
+        height: 35px !important;
+    }
+    
+    .heart-gif {
+        width: 70px !important;
+        height: 70px !important;
+        top: 45%;
+    }
+    
+    .love-text-top {
+        font-size: 18px;
+        padding: 4px 12px;
+        top: 10%;
+    }
+    
+    .heart-text {
+        font-size: 16px;
+        padding: 4px 12px;
+        top: 88%;
+    }
+}
+
+/* للهواتف الصغيرة جداً جداً في الوضع الأفقي */
+@media (max-width: 500px) and (orientation: landscape) {
+    .heart-photo {
+        width: 30px !important;
+        height: 30px !important;
+    }
+    
+    .heart-gif {
+        width: 60px !important;
+        height: 60px !important;
+        top: 45%;
+    }
+    
+    .love-text-top {
+        font-size: 16px;
+        padding: 3px 10px;
+        top: 10%;
+    }
+    
+    .heart-text {
+        font-size: 14px;
+        padding: 3px 10px;
+        top: 90%;
+    }
+}
+
+/* Large Screens */
+@media (min-width: 1920px) {
+    .heart-photo {
+        width: 130px;
+        height: 130px;
+    }
+    
+    .heart-gif {
+        width: 230px;
+        height: 230px;
+        top: 47%;
+    }
+    
+    .love-text-top {
+        font-size: 52px;
+        padding: 20px 50px;
+    }
+    
+    .heart-text {
+        font-size: 48px;
+        padding: 20px 50px;
+    }
+}
+
+/* Small height screens */
+@media (max-height: 700px) and (orientation: portrait) {
+    .love-text-top {
+        top: 10%;
+        font-size: 32px;
+        padding: 10px 30px;
+    }
+    
+    .heart-gif {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .heart-text {
+        top: 85%;
+        font-size: 28px;
+        padding: 10px 30px;
+    }
+}
+
+/* Very small height screens */
+@media (max-height: 500px) and (orientation: portrait) {
+    .love-text-top {
+        top: 8%;
+        font-size: 24px;
+        padding: 8px 20px;
+    }
+    
+    .heart-gif {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .heart-text {
+        top: 88%;
+        font-size: 20px;
+        padding: 8px 20px;
+    }
+}

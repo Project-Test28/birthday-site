@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد ميلاد سعيد! 🎂</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="rainCanvas"></canvas>
+
+    <div id="album" class="album hidden">
+        <div class="book">
+            <div class="book-cover" id="bookCover">
+                <div class="cover-content">
+                    <div class="cover-heart">❤️</div>
+                    <h1>ذكرياتنا</h1>
+                    <p>16 لحظة مميزة</p>
+                    <div class="cover-hands">
+                        <span>👶</span>
+                        <span>🤚</span>
+                        <span>👶</span>
+                    </div>
+                    <div class="open-hint">▼ اضغط لفتح ▼</div>
+                </div>
+            </div>
+
+            <div class="book-pages" id="bookPages"></div>
+
+            <div class="book-controls">
+                <button class="nav-btn prev" id="prevPage" disabled>←</button>
+                <div class="page-dots" id="pageDots"></div>
+                <button class="nav-btn next" id="nextPage">→</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageContainer"></div>
+    <div id="starField" class="stars"></div>
+
+    <!-- مودال عرض الصور -->
+    <div id="photoModal" class="photo-modal" onclick="closeModal(event)">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img id="modalImage" class="modal-image" src="" alt="">
+        <div class="modal-nav">
+            <button onclick="changePhoto(-1)">←</button>
+            <button onclick="changePhoto(1)">→</button>
+        </div>
+    </div>
+
+    <script src="birthday.js"></script>
+</body>
+</html>
