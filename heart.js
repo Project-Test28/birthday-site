@@ -234,11 +234,11 @@ function getHeartSettings() {
     const isLandscape = window.innerWidth > window.innerHeight;
     const width = window.innerWidth;
     
-    // القيم الافتراضية للكمبيوتر - مساحة كبيرة وصور متوسطة
+    // القيم الافتراضية للكمبيوتر - مساحة مناسبة (28 بدلاً من 30)
     let settings = {
-        scale: 30,        // تكبير مساحة القلب (كان 22)
-        step: 0.15,        // تقليل الخطوة لزيادة عدد النقاط (كان 0.2)
-        imgSize: 100,      // حجم الصور مناسب
+        scale: 28,        // تعديل من 30 إلى 28 (أنعم قليلاً)
+        step: 0.15,        // نفس عدد النقاط
+        imgSize: 100,      // حجم الصور ثابت كما هو
         delay: 80
     };
     
@@ -247,7 +247,7 @@ function getHeartSettings() {
         if (isLandscape) {
             // هاتف في الوضع الأفقي
             settings = {
-                scale: 15,        // مساحة كبيرة للوضع الأفقي
+                scale: 14,        // تعديل متناسب
                 step: 0.18,
                 imgSize: 60,
                 delay: 60
@@ -255,7 +255,7 @@ function getHeartSettings() {
         } else {
             // هاتف في الوضع العمودي
             settings = {
-                scale: 18,        // مساحة كبيرة للوضع العمودي
+                scale: 17,        // تعديل متناسب
                 step: 0.16,
                 imgSize: 70,
                 delay: 70
@@ -264,7 +264,7 @@ function getHeartSettings() {
     } else if (width < 900 && isLandscape) {
         // جهاز لوحي في الوضع الأفقي
         settings = {
-            scale: 20,
+            scale: 19,            // تعديل متناسب
             step: 0.17,
             imgSize: 80,
             delay: 70
@@ -272,7 +272,7 @@ function getHeartSettings() {
     } else if (width < 900 && !isLandscape) {
         // جهاز لوحي في الوضع العمودي
         settings = {
-            scale: 22,
+            scale: 21,            // تعديل متناسب
             step: 0.16,
             imgSize: 90,
             delay: 80
@@ -296,7 +296,7 @@ for (let t = 0; t < 2 * Math.PI; t += step) {
     heartPoints.push({ x, y });
 }
 
-console.log(`تم توليد ${heartPoints.length} نقطة للقلب`);
+console.log(`تم توليد ${heartPoints.length} نقطة للقلب بمقياس ${scale}`);
 
 const container = document.getElementById('heartContainer');
 const heartGroup = document.createElement('div');
