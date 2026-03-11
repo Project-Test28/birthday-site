@@ -266,12 +266,13 @@ body {
     border: 2px solid #ff69b4;
     position: relative;
     overflow: hidden;
+    justify-content: center; /* توسيط المحتوى عمودياً */
 }
 
 .photo-frame {
     width: 100%;
-    height: 300px;
-    margin-bottom: 25px;
+    height: 320px; /* تكبير ارتفاع الصور */
+    margin: 15px 0 25px 0; /* تعديل المسافات */
     border-radius: 15px;
     overflow: hidden;
     cursor: pointer;
@@ -297,7 +298,8 @@ body {
     border-radius: 15px;
     font-size: 20px;
     line-height: 1.6;
-    margin-top: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
     position: relative;
     animation: messagePop 0.5s;
     font-weight: 600;
@@ -315,7 +317,7 @@ body {
     text-align: left;
     color: #ff69b4;
     font-size: 16px;
-    margin-top: 15px;
+    margin-top: 5px;
     font-weight: 600;
 }
 
@@ -334,13 +336,13 @@ body {
 }
 
 .nav-btn {
-    width: 60px;
-    height: 60px;
+    width: 70px; /* تكبير حجم الأزرار */
+    height: 70px; /* تكبير حجم الأزرار */
     border-radius: 50%;
     background: #ff69b4;
     color: white;
     border: 3px solid white;
-    font-size: 28px;
+    font-size: 32px; /* تكبير الخط */
     cursor: pointer;
     transition: 0.3s;
     display: flex;
@@ -452,84 +454,65 @@ body {
     display: none !important;
 }
 
-/* ========== تحسينات الهواتف مع تكبير الألبوم ========== */
+/* ========== تحسينات الهواتف ========== */
 @media (max-width: 768px) {
     .album {
-        height: 650px; /* تكبير ارتفاع الألبوم */
+        height: 700px; /* تكبير ارتفاع الألبوم */
         width: 98%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-    }
-    
-    .book {
-        height: 100%;
-    }
-    
-    .cover-content h1 {
-        font-size: 36px;
-        padding: 0 15px;
-    }
-    
-    .cover-heart {
-        font-size: 80px;
-    }
-    
-    .cover-content p {
-        font-size: 20px;
-    }
-    
-    .cover-hands {
-        font-size: 45px;
-    }
-    
-    .open-hint {
-        font-size: 16px;
     }
     
     .book-pages {
         padding: 20px;
-        height: 100%;
-        overflow-y: auto;
     }
     
     .page-spread {
-        grid-template-columns: 1fr 1fr; /* إبقاء الصورتين جنباً إلى جنب */
         gap: 15px;
-        height: auto;
-        min-height: 100%;
     }
     
     .page {
         padding: 15px;
-        margin-bottom: 0;
-        height: 100%;
     }
     
     .photo-frame {
-        height: 200px; /* تكبير ارتفاع الصور */
-        margin-bottom: 15px;
+        height: 250px; /* تكبير الصور للهواتف */
+        margin: 10px 0 15px 0;
+    }
+    
+    .message {
+        font-size: 18px;
+        padding: 15px;
+        margin: 5px 0;
+    }
+    
+    .book-controls {
+        bottom: -60px;
+        gap: 20px;
+    }
+    
+    .nav-btn {
+        width: 60px; /* تكبير للهواتف */
+        height: 60px;
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .album {
+        height: 600px;
+    }
+    
+    .page {
+        padding: 12px;
+    }
+    
+    .photo-frame {
+        height: 200px; /* تكبير للشاشات الصغيرة */
+        margin: 8px 0 12px 0;
     }
     
     .message {
         font-size: 16px;
         padding: 12px;
-        line-height: 1.5;
-        min-height: 70px; /* ضمان مساحة كافية للرسالة */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .page-number {
-        font-size: 14px;
-        margin-top: 10px;
-    }
-    
-    .book-controls {
-        position: relative;
-        bottom: auto;
-        margin-top: 20px;
-        padding: 10px 0;
     }
     
     .nav-btn {
@@ -539,84 +522,24 @@ body {
     }
 }
 
-@media (max-width: 480px) {
+/* للشاشات الصغيرة جداً */
+@media (max-width: 360px) {
     .album {
-        height: 550px; /* تكبير للشاشات الصغيرة */
-    }
-    
-    .cover-content h1 {
-        font-size: 28px;
-    }
-    
-    .cover-heart {
-        font-size: 70px;
-    }
-    
-    .cover-content p {
-        font-size: 18px;
-    }
-    
-    .cover-hands {
-        font-size: 40px;
-    }
-    
-    .book-pages {
-        padding: 15px;
-    }
-    
-    .page-spread {
-        gap: 10px;
-    }
-    
-    .page {
-        padding: 12px;
+        height: 550px;
     }
     
     .photo-frame {
-        height: 160px; /* تكبير للشاشات الصغيرة */
+        height: 170px;
     }
     
     .message {
         font-size: 14px;
         padding: 10px;
-        min-height: 60px;
     }
     
     .nav-btn {
         width: 50px;
         height: 50px;
         font-size: 24px;
-    }
-    
-    .page-dots {
-        gap: 8px;
-    }
-    
-    .dot {
-        width: 12px;
-        height: 12px;
-    }
-}
-
-/* للشاشات الصغيرة جداً */
-@media (max-width: 360px) {
-    .album {
-        height: 500px;
-    }
-    
-    .photo-frame {
-        height: 140px;
-    }
-    
-    .message {
-        font-size: 13px;
-        padding: 8px;
-        min-height: 50px;
-    }
-    
-    .nav-btn {
-        width: 45px;
-        height: 45px;
-        font-size: 22px;
     }
 }

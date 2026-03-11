@@ -179,7 +179,7 @@ body {
     cursor: grabbing;
 }
 
-/* Heart Group */
+/* Heart Group - كل العناصر داخل المجموعة تتحرك معاً */
 .heart-group {
     transform-style: preserve-3d;
     position: absolute;
@@ -189,11 +189,11 @@ body {
     will-change: transform;
 }
 
-/* تكبير حجم القلب */
+/* تكبير حجم القلب بشكل كبير */
 .heart-photo {
     position: absolute;
-    width: 120px;  /* تكبير من 110px */
-    height: 120px; /* تكبير من 110px */
+    width: 140px;  /* تكبير كبير */
+    height: 140px; /* تكبير كبير */
     border-radius: 15px;
     border: 3px solid #ff69b4;
     box-shadow: 0 0 25px rgba(255,105,180,0.6);
@@ -222,14 +222,14 @@ body {
     transition: transform 0.2s ease;
 }
 
-/* Heart GIF - في منتصف القلب تماماً */
+/* Heart GIF - داخل مجموعة القلب لتتحرك معه */
 .heart-gif {
     position: absolute;
     left: 50%;
     top: 48%;
     transform: translate(-50%, -50%) translateZ(60px);
-    width: 200px;  /* تكبير من 190px */
-    height: 200px; /* تكبير من 190px */
+    width: 240px;  /* تكبير كبير */
+    height: 240px; /* تكبير كبير */
     border-radius: 50%;
     border: 4px solid white;
     box-shadow: 0 0 50px #ff1493, 0 0 100px rgba(255,105,180,0.7);
@@ -251,7 +251,7 @@ body {
     justify-content: center;
     background: linear-gradient(135deg, #ff69b4, #ff1493);
     color: white;
-    font-size: 80px; /* تكبير الخط */
+    font-size: 100px; /* تكبير الخط */
 }
 
 @keyframes pulseGif {
@@ -269,7 +269,7 @@ body {
 .heart-text {
     position: absolute;
     left: 50%;
-    top: 82%;
+    top: 84%;
     transform: translate(-50%, -50%) translateZ(40px);
     color: white;
     font-size: 36px;
@@ -368,17 +368,17 @@ body {
     transform: scale(1.1);
 }
 
-/* ========== تحسينات الهواتف مع تكبير القلب ========== */
+/* ========== تحسينات الهواتف مع تكبير القلب بشكل كبير ========== */
 @media (max-width: 768px) and (orientation: portrait) {
     /* تكبير حجم القلب للهواتف العمودية */
     .heart-photo {
-        width: 70px !important;  /* تكبير من 60px */
-        height: 70px !important; /* تكبير من 60px */
+        width: 100px !important;  /* تكبير كبير */
+        height: 100px !important; /* تكبير كبير */
     }
     
     .heart-gif {
-        width: 130px !important;  /* تكبير من 110px */
-        height: 130px !important; /* تكبير من 110px */
+        width: 180px !important;  /* تكبير كبير */
+        height: 180px !important; /* تكبير كبير */
         top: 48%;
     }
     
@@ -397,55 +397,69 @@ body {
         white-space: normal !important;
         text-align: center !important;
         width: 90% !important;
-        top: 84%;
+        top: 85%;
     }
 }
 
 @media (max-width: 480px) and (orientation: portrait) {
     /* تكبير إضافي للهواتف الصغيرة العمودية */
     .heart-photo {
-        width: 60px !important;  /* تكبير من 50px */
-        height: 60px !important; /* تكبير من 50px */
+        width: 85px !important;  /* تكبير كبير */
+        height: 85px !important; /* تكبير كبير */
     }
     
     .heart-gif {
-        width: 110px !important;  /* تكبير من 90px */
-        height: 110px !important; /* تكبير من 90px */
+        width: 150px !important;  /* تكبير كبير */
+        height: 150px !important; /* تكبير كبير */
         top: 48%;
     }
     
     .love-text-top {
-        font-size: 26px !important;
+        font-size: 28px !important;
         padding: 10px 25px !important;
         top: 10%;
-        white-space: normal !important;
-        width: 90% !important;
-        text-align: center !important;
-        line-height: 1.4 !important;
     }
     
     .heart-text {
         font-size: 24px !important;
         padding: 10px 25px !important;
-        top: 84%;
-        white-space: normal !important;
-        width: 90% !important;
-        text-align: center !important;
-        line-height: 1.4 !important;
+        top: 86%;
+    }
+}
+
+/* للشاشات الصغيرة جداً */
+@media (max-width: 360px) and (orientation: portrait) {
+    .heart-photo {
+        width: 75px !important;
+        height: 75px !important;
+    }
+    
+    .heart-gif {
+        width: 130px !important;
+        height: 130px !important;
+    }
+    
+    .love-text-top {
+        font-size: 24px !important;
+        padding: 8px 20px !important;
+    }
+    
+    .heart-text {
+        font-size: 22px !important;
+        padding: 8px 20px !important;
     }
 }
 
 /* ========== تحسينات الهواتف الأفقية مع تكبير القلب ========== */
 @media (max-width: 900px) and (orientation: landscape) {
-    /* تكبير للوضع الأفقي */
     .heart-photo {
-        width: 50px !important;  /* تكبير من 40px */
-        height: 50px !important; /* تكبير من 40px */
+        width: 70px !important;  /* تكبير للوضع الأفقي */
+        height: 70px !important;
     }
     
     .heart-gif {
-        width: 100px !important;  /* تكبير من 80px */
-        height: 100px !important; /* تكبير من 80px */
+        width: 130px !important;
+        height: 130px !important;
         top: 45%;
     }
     
@@ -453,93 +467,38 @@ body {
         font-size: 24px !important;
         padding: 8px 20px !important;
         top: 12%;
-        white-space: nowrap;
     }
     
     .heart-text {
         font-size: 22px !important;
         padding: 8px 20px !important;
         top: 85%;
-        white-space: nowrap;
-    }
-    
-    .heart-group {
-        transform: translate(-50%, -45%) !important;
     }
 }
 
-/* للهواتف الصغيرة جداً في الوضع الأفقي */
 @media (max-width: 700px) and (orientation: landscape) {
     .heart-photo {
-        width: 45px !important;  /* تكبير من 35px */
-        height: 45px !important; /* تكبير من 35px */
+        width: 60px !important;
+        height: 60px !important;
     }
     
     .heart-gif {
-        width: 90px !important;  /* تكبير من 70px */
-        height: 90px !important; /* تكبير من 70px */
+        width: 110px !important;
+        height: 110px !important;
         top: 45%;
-    }
-    
-    .love-text-top {
-        font-size: 22px !important;
-        padding: 6px 15px !important;
-        top: 10%;
-    }
-    
-    .heart-text {
-        font-size: 20px !important;
-        padding: 6px 15px !important;
-        top: 88%;
     }
 }
 
-/* للهواتف الصغيرة جداً جداً في الوضع الأفقي */
 @media (max-width: 500px) and (orientation: landscape) {
-    .heart-photo {
-        width: 40px !important;  /* تكبير من 30px */
-        height: 40px !important; /* تكبير من 30px */
-    }
-    
-    .heart-gif {
-        width: 80px !important;  /* تكبير من 60px */
-        height: 80px !important; /* تكبير من 60px */
-        top: 45%;
-    }
-    
-    .love-text-top {
-        font-size: 20px !important;
-        padding: 5px 12px !important;
-        top: 10%;
-    }
-    
-    .heart-text {
-        font-size: 18px !important;
-        padding: 5px 12px !important;
-        top: 90%;
-    }
-}
-
-/* للشاشات الصغيرة جداً جداً */
-@media (max-width: 360px) and (orientation: portrait) {
     .heart-photo {
         width: 50px !important;
         height: 50px !important;
     }
     
     .heart-gif {
-        width: 90px !important;
-        height: 90px !important;
-    }
-    
-    .love-text-top {
-        font-size: 22px !important;
-        padding: 8px 15px !important;
-    }
-    
-    .heart-text {
-        font-size: 20px !important;
-        padding: 8px 15px !important;
+        width: 100px !important;
+        height: 100px !important;
+        top: 45%;
     }
 }
 
@@ -551,46 +510,18 @@ body {
         text-align: center !important;
         line-height: 1.5 !important;
     }
-    
-    .modal-nav button {
-        width: 50px !important;
-        height: 50px !important;
-        font-size: 24px !important;
-    }
-    
-    .close-modal {
-        font-size: 50px !important;
-        top: 10px !important;
-        right: 20px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .modal-nav button {
-        width: 45px !important;
-        height: 45px !important;
-        font-size: 22px !important;
-    }
-    
-    .close-modal {
-        font-size: 45px !important;
-    }
-    
-    .heart-gif.error {
-        font-size: 60px !important;
-    }
 }
 
 /* Large Screens */
 @media (min-width: 1920px) {
     .heart-photo {
-        width: 140px;
-        height: 140px;
+        width: 160px;
+        height: 160px;
     }
     
     .heart-gif {
-        width: 250px;
-        height: 250px;
+        width: 280px;
+        height: 280px;
         top: 47%;
     }
     
@@ -602,48 +533,5 @@ body {
     .heart-text {
         font-size: 55px;
         padding: 25px 60px;
-    }
-}
-
-/* Small height screens */
-@media (max-height: 700px) and (orientation: portrait) {
-    .love-text-top {
-        top: 10%;
-        font-size: 28px;
-        padding: 10px 25px;
-    }
-    
-    .heart-gif {
-        width: 140px;
-        height: 140px;
-    }
-    
-    .heart-text {
-        top: 85%;
-        font-size: 24px;
-        padding: 10px 25px;
-    }
-}
-
-/* دعم الشاشات ذات الارتفاع المنخفض في الوضع الأفقي */
-@media (max-height: 500px) and (orientation: landscape) {
-    .heart-gif {
-        width: 90px !important;
-        height: 90px !important;
-    }
-    
-    .heart-photo {
-        width: 40px !important;
-        height: 40px !important;
-    }
-    
-    .love-text-top {
-        font-size: 20px !important;
-        padding: 5px 12px !important;
-    }
-    
-    .heart-text {
-        font-size: 18px !important;
-        padding: 5px 12px !important;
     }
 }
