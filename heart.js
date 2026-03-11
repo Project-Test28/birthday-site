@@ -234,28 +234,28 @@ function getHeartSettings() {
     const isLandscape = window.innerWidth > window.innerHeight;
     const width = window.innerWidth;
     
-    // القيم الافتراضية للكمبيوتر - مساحة مناسبة (28 بدلاً من 30)
+    // القيم الافتراضية للكمبيوتر - مساحة مثالية 28
     let settings = {
-        scale: 28,        // تعديل من 30 إلى 28 (أنعم قليلاً)
-        step: 0.15,        // نفس عدد النقاط
-        imgSize: 100,      // حجم الصور ثابت كما هو
+        scale: 28,        // للكمبيوتر (مثالي)
+        step: 0.15,
+        imgSize: 100,
         delay: 80
     };
     
-    // تعديل للهواتف
+    // تعديل للهواتف - تصغير المساحة إلى 25-26
     if (width < 600) {
         if (isLandscape) {
-            // هاتف في الوضع الأفقي
+            // هاتف في الوضع الأفقي - تصغير أكثر
             settings = {
-                scale: 14,        // تعديل متناسب
+                scale: 14,        // مناسب للوضع الأفقي
                 step: 0.18,
                 imgSize: 60,
                 delay: 60
             };
         } else {
-            // هاتف في الوضع العمودي
+            // هاتف في الوضع العمودي - تصغير إلى 25
             settings = {
-                scale: 17,        // تعديل متناسب
+                scale: 25,        // تعديل من 17 إلى 25 (تصغير مناسب)
                 step: 0.16,
                 imgSize: 70,
                 delay: 70
@@ -264,7 +264,7 @@ function getHeartSettings() {
     } else if (width < 900 && isLandscape) {
         // جهاز لوحي في الوضع الأفقي
         settings = {
-            scale: 19,            // تعديل متناسب
+            scale: 16,            // مناسب
             step: 0.17,
             imgSize: 80,
             delay: 70
@@ -272,7 +272,7 @@ function getHeartSettings() {
     } else if (width < 900 && !isLandscape) {
         // جهاز لوحي في الوضع العمودي
         settings = {
-            scale: 21,            // تعديل متناسب
+            scale: 26,            // تعديل من 21 إلى 26 (تصغير)
             step: 0.16,
             imgSize: 90,
             delay: 80
